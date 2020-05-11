@@ -1,0 +1,55 @@
+<!-- Form de Add novos Produtos -->
+<h2>Adicionar Produtos</h2>
+<br><br>
+<div action="" method="post">
+    <!-- Produto -->
+    <label for="imputText">Nome:</label>
+    <br>
+    <input type="text" id="imputText" placeholder="insira o nome do produto" class="form-control" [(ngModel)]="produto.nome">
+    <br>
+    <!-- Preço -->
+    <label for="preco">Preço:</label>
+    <br>
+    <input type="number" id="preco" min="1" step="any" class="form-control" [(ngModel)]="produto.preco">
+    <br>
+    <!-- Imagem -->
+    <label for="imagem">Imagem:</label>
+    <br>
+    <input type="url" id="imagem"  class="form-control" [(ngModel)]="produto.imagem">
+    <br>
+    <!-- Quantidade em Estoque -->
+    <label for="qtdEstoque">Quantidade em Estoque:</label>
+    <br>
+    <input type="number" id="qtdEstoque"  class="form-control" [(ngModel)]="produto.qtdEstoque">
+    <br>
+
+</div>
+
+<!-- botão de criar -->
+
+    <button mat-raised-button (click)="createProdutos()">Criar</button>
+
+<!-- Lista de Produtos -->
+    <div class="card-grupo">
+        <mat-card class="cards mat-elevation-z3" *ngFor="let produto of listaProdutos">
+            <img src="{{produto.imagem}}">
+
+            <mat-card-title>
+                {{produto.nome}}
+            </mat-card-title>
+
+            <mat-card-subtitle class="subtitle">
+                Código: {{produto.id}}
+                <br>
+                Preço: R{{produto.preco | currency}}
+                <br>
+                Quantidade em Estoque: {{produto.qtdEstoque}}
+            </mat-card-subtitle>
+    
+            <mat-card-footer>
+                <button mat-raised-button color="warn" [routerLink]="['/delete', produto.id]">Apagar</button>
+                <button mat-raised-button color="primary"[routerLink]="['/editar', produto.id]">Editar</button>
+            </mat-card-footer>
+
+        </mat-card>
+    </div>
